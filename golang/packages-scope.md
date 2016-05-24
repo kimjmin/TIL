@@ -168,7 +168,7 @@ package main
 import "github.com/kimjmin/main2"
 
 func main() {
-	main2.Mprint() // 실행 가능
+	main2.Mprint() // 호출 가능
 	main2.mprint() // 컴파일 오류
 }
 ```
