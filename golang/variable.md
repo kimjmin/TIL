@@ -30,7 +30,7 @@ d := true
 
 ### %v
 변수의 값을 출력
-```
+```go
 package main
 
 import "fmt"
@@ -49,7 +49,7 @@ $ go run main.go
 
 ### %T
 변수의 타입을 출력
-```
+```go
 package main
 
 import "fmt"
@@ -68,7 +68,7 @@ int, string, float64, bool
 
 ### 초기값 확인
 선언만 하고 난 뒤 할당되는 값 확인
-```
+```go
 package main
 
 import "fmt"
