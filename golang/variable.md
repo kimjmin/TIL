@@ -66,6 +66,10 @@ $ go run main.go
 int, string, float64, bool
 ```
 
+> 다른 출력 형식들은 아래 페이지에서 확인 가능.
+https://golang.org/pkg/fmt/
+
+
 ### 초기값 확인
 선언만 하고 난 뒤 할당되는 값 확인
 ```go
@@ -87,5 +91,3 @@ func main() {
 $ go run main.go
 0, , 0, false
 ```
-
-
