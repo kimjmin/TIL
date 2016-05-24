@@ -66,8 +66,8 @@ $ go run main.go
 int, string, float64, bool
 ```
 
-> 다른 출력 형식들은 아래 페이지에서 확인 가능.
-https://golang.org/pkg/fmt/
+> 다른 출력 형식들은 다음 페이지에서 확인 가능.
+> https://golang.org/pkg/fmt/
 
 
 ### 초기값 확인
