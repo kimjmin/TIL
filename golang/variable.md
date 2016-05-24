@@ -9,7 +9,7 @@ var a string
 a = "Jongmin Kim"
 ```
 
-선언 하면서 값 할당.
+선언 하면서 값 할당. 타입은 알아서 지정됨.
 ```
 var a = "Jongmin Kim"
 ```
@@ -28,7 +28,7 @@ c := 5.5
 d := true
 ```
 
-### Type var: %v
+### %v
 변수의 값을 출력
 ```
 package main
@@ -47,7 +47,7 @@ $ go run main.go
 10, Hi, 361.231, true
 ```
 
-### Type format: %T
+### %T
 변수의 타입을 출력
 ```
 package main
@@ -87,3 +87,5 @@ func main() {
 $ go run main.go
 0, , 0, false
 ```
+
+
