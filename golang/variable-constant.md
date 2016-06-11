@@ -117,3 +117,67 @@ const (
 	age, name	= 36, "Jongmin"
 )
 ```
+
+### iota - 순서대로 상수 생성.
+
+상수 값을 일일이 대입하지 않고 순서대로 생성하려면 `iota` 사용.
+```go
+const (
+	A = iota	// 0
+	B = iota	// 1
+	C = iota	// 2
+)
+```
+
+또는 아래와 같이 선언 가능. 새로 선언하면 초기화 됨.
+```go
+const (
+	A = iota	// 0
+	B					// 1
+	C					// 2
+)
+
+const (
+	D = iota	// 0
+	E					// 1
+	F					// 2
+)
+```
+
+아무 연산도 설정 안하면 +1. 다른 연산 설정 가능.
+```go
+const (
+	_ = iota	//0
+	B = iota * 10	// 1 * 10
+	C = iota * 10	// 2 * 10
+)
+```
+
+비트 연산도 가능.
+```go
+package main
+
+import "fmt"
+
+const (
+	_  = iota             //0
+	KB = 1 << (iota * 10) // 1 << (1 * 10)
+	MB = 1 << (iota * 10) // 1 << (2 * 10)
+)
+
+func main() {
+	fmt.Println("Binary\t\tDecimal")
+	fmt.Printf("%b\t", KB)
+	fmt.Printf("%d\n", KB)
+	fmt.Printf("%b\t", MB)
+	fmt.Printf("%d\n", MB)
+}
+```
+
+실행 결과
+```sh
+Binary		Decimal
+10000000000	1024
+100000000000000000000	1048576
+```
+

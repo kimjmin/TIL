@@ -54,7 +54,7 @@ package main
 var a = 42
 ```
 
-main 실행. go run main.go 하면 오류남.
+컴파일 후 main 실행. go run main.go 하면 main.go 파일에 있는 코드만 실행하려고 하기 때문에 오류남. 컴파일 하면 main 패키지에 있는 코드들 다 묶어서 main 실행파일 하나로 컴파일 함.
 ```
 $ go clean
 $ go build
