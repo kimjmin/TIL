@@ -91,3 +91,29 @@ func main() {
 $ go run main.go
 0, , 0, false
 ```
+
+## 상수 선언
+
+`var` 대신 `const` 사용. 반드시 초기값을 대입해야 하며 대입을 안 하거나 초기값을 바꾸려고 하면 컴파일 에러남.
+
+```go
+const age int = 36
+const name string = "Jongmin"
+const score int // 초기값 대입 안하면 컴파일 에러.
+
+age = 20       // 값 바꾸려고 하면 컴파일 에러
+```
+
+동시에 여러 상수 선언
+```go
+const x, y	int = 5, 10
+const age, name	= 36, "Jongmin"
+```
+
+( )를 사용해서 상수 여러 개를 한 번에 선언하고 초기화 가능.
+```go
+const (
+	x, y	int = 5, 10
+	age, name	= 36, "Jongmin"
+)
+```
