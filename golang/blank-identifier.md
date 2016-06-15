@@ -5,7 +5,7 @@ Go는 코드상의 pollution 을 허용하지 않기 때문에 import 한 라이
 
 또는 리턴값과 예외처리 `err` 를 리턴하는 함수에서 예외처리만 실행하도록 하는 경우 등에 사용 가능하다.
 
-`range` 기능을 사용해서 배열의 key / value 값을 돌려받을 때 value 값만 사용할 경우에 사용 가능함.
+`range` 기능을 사용해서 배열의 index / value 값을 돌려받을 때 value 값만 사용할 경우에 사용 가능함. `range` 를 사용하면 2개의 리턴값이 반환되는데 첫번째는 index, 두번째는 그 value 들어가 있다. 리턴값 하나만 쓰면 index 만 돌려받는다.
 ```go
 package main
 import "fmt"
@@ -13,7 +13,7 @@ import "fmt"
 func main() {
 	a := [5]int{1, 2, 5, 44, 12}
 
-	for _, value := range a { // 인덱스는 생략, value에 배열 요소의 값이 들어감
+	for _, value := range a { // index는 생략, value에 배열 요소의 값이 들어감
 		fmt.Println(value)
 	}
 }
