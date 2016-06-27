@@ -1,5 +1,26 @@
 #Variable - 변수.
 
+## Types
+- `Boolean`: true / false
+- Numeric:
+	- `uint8`: (0 to 255)
+	- `uint16`: (0 to 65535)
+	- `uint32`: (0 to 4294967295)
+	- `uint64`: (0 to 18446744073709551615)
+	- `int8`: (-128 to 127)
+	- `int16`: (-32768 to 32767)
+	- `int32`: (-2147483648 to 2147483647)
+	- `int64`: (-9223372036854775808 to 9223372036854775807)
+	- `float32`: 32-bit 실수
+	- `float64`: 64-bit 실수
+	- `complex64`: float32 를 포함한 복소수
+	- `complex128`: float64 를 포함한 복소수
+- Char
+	- `byte`: uint8 의 alias - [ASCII](https://en.wikipedia.org/wiki/ASCII)
+	- `rune`: int32 의 alias (1~4byte) - [UTF-8](https://en.wikipedia.org/wiki/UTF-8). '' 으로 묶어서 표시
+- `string`: "" 으로 묶어서 표시
+
+
 ## 변수 선언
 
 ### var
