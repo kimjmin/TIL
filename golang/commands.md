@@ -1,5 +1,28 @@
 #Go Commands - Go 명령어
 
+## go [help]
+도움말 보고 싶으면 그냥 go 또는 go help
+```sh
+go
+go help
+```
+
+특정 커맨드에 대한 도움말을 보고 싶으면 go help [command]
+```sh
+go help get
+```
+
+## go get
+원격 리파지토리에서 프로그램 받음. 프로그램은 src 안에 들어가고 컴파일 된 바이너리는 bin 안에 들어감.
+```sh
+go get github.com/kimjmin/lsbeat
+```
+
+가장 최신 소스로 업데이트
+```sh
+go get -u
+```
+
 ## go run
 파일 실행
 ```sh
