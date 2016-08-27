@@ -18,6 +18,7 @@ go help get
 go get github.com/kimjmin/lsbeat
 ```
 
+### go get -u
 가장 최신 소스로 업데이트
 ```sh
 go get -u
