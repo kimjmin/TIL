@@ -2,19 +2,19 @@
 
 기본 명령은 항상 docker 로 시작
 
-### docker search <image> - 이미지 검색
+### search <image> - 이미지 검색
 ```
 docker search elasticsearch
 ```
 
-### docker pull <image> - 이미지 내려받기
+### pull <image> - 이미지 내려받기
 ```
 docker pull elasticsearch
 docker pull elasticsearch:5.0
 docker pull kimjmin/elasticsearch
 ```
 
-### docker run - 컨테이너 생성
+### run - 컨테이너 생성
 elasticsearch 이미지를 elastic 이라는 이름의 컨테이너로 생성
 ```
 docker run --name elastic elasticsearch:5.0
@@ -30,7 +30,7 @@ docker run -d --name elastic elasticsearch:5.0
 docker run -d -p 9200:9200 --name elastic elasticsearch:5.0
 ```
 
-### docker ps - 컨테이너 목록 확인
+### ps - 컨테이너 목록 확인
 실행중인 컨테이너 목록
 ```
 docker ps
@@ -41,13 +41,13 @@ docker ps
 docker ps -a
 ```
 
-### docker stop <container name> - 컨테이너 실행 중지
+### stop <container name> - 컨테이너 실행 중지
 elastic 컨테이너 중지
 ```
 docker stop elastic
 ```
 
-### docker start <container name> - 컨테이너 시작
+### start <container name> - 컨테이너 시작
 elastic 컨테이너 시작
 ```
 docker start elastic
