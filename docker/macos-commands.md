@@ -17,5 +17,8 @@ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux
 ```sh
 Control-a k 
 ```
-
+화면 로그들 삭제
+```
+rm /var/lib/docker/containers/*/*.log
+```
 https://ss64.com/osx/screen.html 참고.
