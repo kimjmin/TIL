@@ -1,0 +1,18 @@
+<script>
+    var a = prompt("아무 값이나 입력하세요","");
+    // alert(typeof(a));
+    switch(true){
+        case (Number(a) == 0):
+            alert("0 입니다.");
+            break;
+        case (Number(a) > 0):
+            alert("양수입니다");
+            break;
+        case (Number(a) < 0):
+            alert("음수입니다");
+            break;
+        default:
+            alert("숫자가 아닙니다");
+            break;
+    }
+</script>
