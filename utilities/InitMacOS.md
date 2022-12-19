@@ -18,10 +18,19 @@
 
 
 
-zsh 플러그인 설치 : 
+#### zsh 플러그인 설치 : 
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 brew install autojump
+```
+`vim .zshrc` 에서 아래 내용 수정.
+```
+plugins=(
+        git
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        autojump
+)
 ```
 
