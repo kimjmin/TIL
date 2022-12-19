@@ -7,7 +7,7 @@
 4. zsh(미설치시) : `brew install zsh`
 5. oh my zsh : `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 6. zsh 테마 적용 : https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#nicoulaj
-  - `vim ./zshrc`
+  - `vim .zshrc`
   - `ZSH_THEME="robbyrussell"` --> `ZSH_THEME="nicoulaj"`
   - `source ~/.zshrc`
 
