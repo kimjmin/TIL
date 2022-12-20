@@ -31,9 +31,11 @@ plugins=(
   - DefaultkeyBinding.dic 파일 생성 -> 작성 : ```{ "₩" = ("instertText:", "`"); }```
   - 재부팅
 
-
-#### git 설치
-brew install git
+#### github
+- git 설치 : `brew install git`
+- 계정 등록 : 
+  - `git config --global user.name "kimjmin"`
+  - `git config --global user.name "kimjmin@gmail.com"`
 
 #### Visual Studio Code 설치
 1. 다운로드 & 설치 : https://code.visualstudio.com
