@@ -36,6 +36,7 @@ plugins=(
 - 계정 등록 : 
   - `git config --global user.name "kimjmin"`
   - `git config --global user.name "kimjmin@gmail.com"`
+- 암호화 토큰 키체인 등록 : https://zest1923.tistory.com/58
 
 #### Visual Studio Code 설치
 1. 다운로드 & 설치 : https://code.visualstudio.com
