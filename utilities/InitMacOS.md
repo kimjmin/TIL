@@ -47,9 +47,14 @@ plugins=(
   - Font Size : 14
   - Font Family 맨 앞에 D2Coding 추가 : `D2Coding, Menlo, Monaco, 'Courier New', monospace`
 
-
-
 #### nvm 설치
-
+- https://github.com/nvm-sh/nvm#installing-and-updating 참고
+```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash```
+- `~/.zshrc` 에 다음 내용 자동으로 추가됨 : 
+```
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+- `source ~/.zshrc` 또는 터미널 재시작
 
 
