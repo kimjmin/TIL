@@ -1,5 +1,6 @@
 - https://www.youtube.com/watch?v=Z9dvM7qgN9s
 
+UI 도구 : sourcetree 추천.
 글로벌 환경 설정. `--global` 안 하면 현재 폴더 기준으로 생성됨.
 ```
 git config --global
@@ -75,3 +76,9 @@ Descrption
 커밋하고 나서 `git st` 하면 staging 깨끗이 비워져 있음.
 커밋한 내용 보려면 : `git log`
 간단히 메시지 추가하면서 커밋하려면 : `git commit -m "이런저런 내용 추가"`
+staging 과 working directory 전부 싸그리 바로 커밋 : `git commit -am "걍 다 커밋"`
+
+commit 은 작업 별로 제목 잘 달아서 넣는것이 좋겠다.
+fix 를 할때는 딱 그 내용만 수정하고 커밋할것. 이것 저것 자잘하게 한꺼번에 말것.
+
+
