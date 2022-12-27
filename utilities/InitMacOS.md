@@ -35,7 +35,7 @@ plugins=(
 - git 설치 : `brew install git`
 - 계정 등록 : 
   - `git config --global user.name "kimjmin"`
-  - `git config --global user.name "kimjmin@gmail.com"`
+  - `git config --global user.email "kimjmin@gmail.com"`
 - 암호화 토큰 키체인 등록 : https://zest1923.tistory.com/58
 
 #### Visual Studio Code 설치
