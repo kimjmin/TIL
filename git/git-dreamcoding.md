@@ -72,3 +72,6 @@ Title
 
 Descrption
 ```
+커밋하고 나서 `git st` 하면 staging 깨끗이 비워져 있음.
+커밋한 내용 보려면 : `git log`
+간단히 메시지 추가하면서 커밋하려면 : `git commit -m "이런저런 내용 추가"`
