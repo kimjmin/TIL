@@ -47,6 +47,10 @@ plugins=(
   - `cmd + ,`
   - Font Size : 14
   - Font Family 맨 앞에 D2Coding 추가 : `D2Coding, Menlo, Monaco, 'Courier New', monospace`
+5. Youtube 드림코딩 VS Extension 참고 : https://www.youtube.com/watch?v=bS9yTI2fC0w
+  - jsfiddle.net 
+  - codesandbox.io
+6. 
 
 #### nvm 설치
 - https://github.com/nvm-sh/nvm#installing-and-updating 참고
