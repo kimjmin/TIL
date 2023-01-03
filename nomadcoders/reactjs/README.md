@@ -122,7 +122,7 @@ function App () {
 }
 ReactDOM.render(<App/>, root);
 ```
-- 챌린지 : 컴포넌트 복사해서 <select> 태그 안에서 선택한 컴포넌트만 보이도록. `<MinsToHours /> <KmToMiles>`
+- 챌린지 : 컴포넌트 복사해서 `<select>` 태그 안에서 선택한 컴포넌트만 보이도록. `<MinsToHours /> <KmToMiles>`
 ```javascript
 const KbToMiles = () => { ... }
 const MinsToHours = () => { ... }
