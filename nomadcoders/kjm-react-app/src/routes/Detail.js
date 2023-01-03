@@ -6,6 +6,7 @@ const Detail = () => {
     const json = await (
       await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
     ).json();
+    //ToDo : json 을 state 안에 넣어주고 return 에서 그려주기
   };
   useEffect(() => {
     getMovieDetail();
