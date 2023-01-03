@@ -6,73 +6,27 @@
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7.20.11/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
 <script type="text/babel">  //jsx : 바벨 사용하려면 추가해줘야 함.
 const root = document.getElementById("root");
-const KbToMiles = () => {
-  const [dist, setDist] = React.useState();
-  const [flip, setFlip] = React.useState(false);
-  function onChange(event) {
-    setDist(event.target.value);
-  };
-  const resetDist = () => setDist(0);
-  const onFlip = () => {
-    resetDist();
-    setFlip((current) => !current); // setFlip(!flip) 보다 이렇게 하는게 안전함.
+function Hello() {
+  function destroyedFn() { console.log("bye"); }
+  function createdFn() {
+    console.log("hello"); 
+    return destroyedFn;
   }
-  // react 에서는 그냥 for 대신 htmlFor 써야 함. react.dev.min.js 하면 오류 표시됨.
-  return (<div>
-    <div>
-      <label htmlFor="kms">Kilometers </label>
-      <input id="kms" placeholder="km" type="number" value={flip ? dist * 1.6 : dist} onChange={onChange} disabled={flip === true}/>
-    </div>
-    <div>
-      <label htmlFor="miles">Miles </label>
-      <input id="miles" placeholder="miles" type="number"  value={flip ? dist : Math.round(dist / 1.6 * 100)/100} onChange={onChange} disabled={flip === false}/>
-    </div>
-    <button onClick={resetDist}>Reset</button>
-    <button onClick={onFlip}>Flip</button>
-  </div>);
+  React.useEffect( createdFn , []);
+  return ( <h1>Hello</h1> );
 }
-const MinsToHours = () => {
-  const [amount, setAmount] = React.useState();
-  const [flip, setFlip] = React.useState(false);
-  function onChange(event) {
-    setAmount(event.target.value);
-  };
-  const resetMin = () => setAmount(0);
-  const onFlip = () => {
-    resetMin();
-    setFlip((current) => !current); // setFlip(!flip) 보다 이렇게 하는게 안전함.
-  }
-  // react 에서는 그냥 for 대신 htmlFor 써야 함. react.dev.min.js 하면 오류 표시됨.
-  return (<div>
+function App() {
+  const [showing, setShowing] = React.useState(false);
+  const onClick = () => setShowing((prev) => !prev)
+  return (
     <div>
-      <label htmlFor="mins">Minutes </label>
-      <input id="mins" placeholder="분" type="number" value={flip ? amount * 60 : amount} onChange={onChange} disabled={flip === true}/>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}> {showing ? "hide" : "show" } </button>
     </div>
-    <div>
-      <label htmlFor="hours">Hours </label>
-      <input id="hours" placeholder="시" type="number"  value={flip ? amount : Math.round(amount / 60)} onChange={onChange} disabled={flip === false}/>
-    </div>
-    <button onClick={resetMin}>Reset</button>
-    <button onClick={onFlip}>Flip</button>
-  </div>);
-}
-function App () {
-  const [selected, setSelected] = React.useState("0");
-  const onSelected = (event) => {
-    setSelected(event.target.value);
-  }
-  return (<div>
-    <h1>Super Converter</h1>
-    <select value={selected} onChange={onSelected}>
-      <option value="0">Minutes to Hours</option>
-      <option value="1">Kilometer to Miles</option>
-    </select>
-    <hr/>
-      {selected === "0" ? <MinsToHours /> : null}
-      {selected === "1" ? <KbToMiles /> : null}
-  </div>);
+  );
 }
 ReactDOM.render(<App/>, root);
 </script>

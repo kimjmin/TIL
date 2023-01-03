@@ -144,3 +144,154 @@ function App() {
 }
 ```
 
+## 4. Props
+- 각 기능들을 컴포넌트로 만들어 서로 포함.
+- Props : 부모 컴포넌트에서 자식 컴포넌트로 값을 전달하는 방법.
+- 사용하는 컴포넌트 태그에서 넣어준 값들이 props 의 인자로 들어감.
+```javascript
+const Btn = (props) => {
+  //사용하는 컴포넌트 태그에서 넣어준 값들이 props 의 인자로 들어감. ({kjmVal, big}) 로 바로 써줘도 됨.
+  console.dir(props);
+  return (<button
+     style={{
+      backgroundColor: "tomato", color: "white", 
+      margin: "10px", padding: "10px", border: 0, borderRadius: 5,
+      fontSize: props.big ? 18 : 12,
+    }} >
+  {props.kjmVal}
+  </button>);
+}
+function App () {
+  return (<div>
+    <Btn kjmVal="Save Changes" big={true} />
+    <Btn kjmVal="Continue" big={false} />
+  </div>);
+}
+```
+- 부모 컴포넌트가 재랜더링 되면 안에 있는 컴포넌트 전부 재랜더링 됨
+- 재랜더링 필요없는 자식 컴포넌트 - `React.memo(Btn);`
+```javascript
+const Btn = (props) => {
+  console.log(props.kjmVal);
+  return (<button
+     style={{
+      backgroundColor: "tomato", color: "white", 
+      margin: "10px", padding: "10px", border: 0, borderRadius: 5,
+      fontSize: props.big ? 18 : 12,
+    }} 
+    onClick={props.onChange}
+    >
+  {props.kjmVal}
+  </button>);
+}
+const MemoBtn = React.memo(Btn);  // props 가 변경된 자식만 재랜더링함
+function App () {
+  const [val, setVal] = React.useState("Save Changes");
+  const changeVal = () => setVal("Save Chaged Chaged");
+  return (<div>
+    <MemoBtn kjmVal={val}  big={true} onChange={changeVal}/>
+    <MemoBtn kjmVal="Continue" big={false}/>
+  </div>);
+}
+ReactDOM.render(<App/>, root);
+```
+- 전달하는 props 타입 체크 : https://reactjs.org/docs/typechecking-with-proptypes.html
+```javascript
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+Btn.propTypes = {
+  text: PropTypes.string.isRequired, // 필수 필드.
+  fontSize: PropTypes.number
+}
+```
+- 잘 안됨. 왜그러지?
+
+## 5. Create React App
+- React App 프로젝트를 쉽게 시작 : https://create-react-app.dev
+- node.js 설치되어 있으면 `npx` 커맨드 실행 가능.
+```sh
+npx create-react-app my-app
+```
+- `npm start` 명령으로 인터랙티브 웹 서버 시작 가능
+- nodeJS 에서 실행하기 때문에 import / export 사용 가능.
+```javascript
+// index.js
+import Button from "./Button";
+function App(){
+  return (
+    <div>
+      <Button />
+    </div>
+  );
+}
+
+// Button.js
+function Button({text}){
+  return (<button>{text}</button>;)
+}
+export default Button;
+```
+- prop-types 도 npm 으로 설치
+```
+npm i proo-types
+```
+- css 도 모듈화 가능. import 해서 접근 가능. html 에서는 랜덤한 클래스명으로 보임. 완벽한 스타일의 분리.
+```javascript
+// Button.module.css
+.btn {
+  color: red
+}
+// Button.js
+import styles from "./Button.modules.css";
+function Button({text}){
+  return (<button clssName={styles.btn}>{text}</button>;)
+}
+```
+
+## 6. Effects
+- `useState()` 컴포넌트가 렌더링 될 때 마다 항상 실행
+- `useEffect()` : 컴포넌트 최초 랜더링 시 한번만 실행
+```javascript
+const App = () => {
+  const [counter, setCounter] = React.useState(0);
+  const onClick = () => setCounter((prev) => prev + 1);
+  console.log("always");
+  React.useEffect(() => { console.log("only once"); }, []);
+  return (
+<div>
+  <h1>{counter}</h1>
+  <button onClick={onClick}>Click</button>
+</div>
+  );
+}
+```
+- 특정 값이 변했을 때만 렌더링하도록 설정.
+```javascript
+React.userEffect(() => {
+  if(keyword !== "" && keyword.length > 5){ 
+    console.log("Search for", keyword);
+  }
+}, [keyword] ); // keyword 값이 바뀌었을때만 랜더링.
+```
+- 컴포넌트가 파괴 (destroyed) 될 때 실행 : uesEffect 안에서 실행하는 함수에서 리턴하는 함수.
+```javascript
+function Hello() {
+  function destroyedFn() { console.log("bye"); }  // Hello 컴포넌트 파괴될 때 실행
+  function createdFn() {  // Hello 컴포넌트 랜더링 될 때 실행
+    console.log("hello"); 
+    return destroyedFn;
+  }
+  React.useEffect( createdFn , []);
+  return ( <h1>Hello</h1> );
+}
+function App() {
+  const [showing, setShowing] = React.useState(false);
+  const onClick = () => setShowing((prev) => !prev)
+  return (
+    <div>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}> {showing ? "hide" : "show" } </button>
+    </div>
+  );
+}
+```
+

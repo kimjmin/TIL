@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.20.11/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+<script type="text/babel">  //jsx : 바벨 사용하려면 추가해줘야 함.
+const root = document.getElementById("root");
+const Btn = ({text, big, onChange}) => {
+  //사용하는 컴포넌트 태그에서 넣어준 값들이 props 의 인자로 들어감. ({kjmVal}) 로 바로 써줘도 됨.
+  // console.dir(props);
+  console.log(text);
+  return (<button
+    style={{
+      backgroundColor: "tomato", color: "white", 
+      margin: "10px", padding: "10px", border: 0, borderRadius: 5,
+      fontSize: big ? 18 : 12,
+    }} 
+    onClick={onChange}
+    >
+  {text}
+  </button>);
+}
+Btn.propTypes = {
+  text : PropTypes.string.isRequired,
+  fontSize : PropTypes.number.isRequired,
+};
+function App () {
+  const [val, setVal] = React.useState("Save Changes");
+  const changeVal = () => setVal("Save Chaged Chaged");
+  return (<div>
+    <Btn text={val} big={true} onChange={changeVal}/>
+    <Btn text="Continue" big={false}/>
+  </div>);
+}
+ReactDOM.render(<App/>, root);
+</script>
+</html>
