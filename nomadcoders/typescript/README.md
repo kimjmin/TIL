@@ -116,3 +116,106 @@ function hello(name: string | number) {
   }
 }
 ```
+
+## 3 Functions
+- Call Signature : VS Code 에서 마우스 올렸을 때 보이는 정보.
+```typescript
+type Add = (a: number, b:number) => number; // 미리 함수의 타입 정보를 다 정의
+const add:Add = (a, b) => a+b;
+```
+- Overloading : Java 에서 오버로드 와 비슷함. 같은 함수명에 다수의 파라메터 형식 부여.
+```typescript
+type Add = {
+  (a: number, b: number) : number
+  (a: number, b: string) : number
+}
+// 두가지 형식으로 호출 가능.
+const add: Add = (a, b) => {
+  if(typeof b ==="string") return a
+  else return a + b
+}
+
+//위와 같은 예제는 잘 사용 안됨. 실제는 다음과 같이.
+type Config = {
+  path: string,
+  state: object
+}
+type Push = {
+  (path: string ): void
+  (config: Config): void
+}
+const push: Push = (config) => {
+  if(typeof config === 'string') console.log(config);   //config 는 String
+  else { console.log(config.paht)}    // config 는 ojb
+}
+// Next.js 예 : Router.psh() 에 string, object 다 사용 가능.
+Router.push(
+  {path: "/home", state : 1}
+)
+Router.push("/home")
+
+// 파라메터가 2개 또는 3개 일 때 파라메터들의 합을 리턴.
+type Add = {
+  (a: number, b: number) : number
+  (a: number, b: number, c: number) : number
+}
+const add: Add = (a, b, c?: number) => {
+  if (c) return a+b+c;
+  else return a+b;
+}
+```
+- polymorphism
+```typescript
+// 일반적인 오버로딩 활용
+type SuperPrint = {
+  (arr: number[]): void
+  (arr: boolean[]): void
+
+}
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach(i => console.log(i))
+}
+superPrint([1, 2, 3, 4]);
+superPrint([true, false]);
+// 이런식으로 다 정의하다가는 끝이 없음.
+
+// 제네릭(placeholder for type) 타입으로 받을것. TS 가 추론해서 선언해줌. <Generic 이름>
+type SuperPrint = {
+  <MyGeneric>(arr: TypePlaceholder[]): void   // 이렇게 하면 모든 타입 다 받음.
+}
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach(i => console.log(i))
+}
+// 각각 함수명에 마우스 커서 대서 확인할것.
+const a = superPrint([1, 2, 3, 4]);
+const b = superPrint([true, false]);
+const d = superPrint(["a", "b", 1, true ]);   // const d: sting | number | boolean
+
+// 값 리턴하려면 다음과 같이
+type SuperPrint = {
+  <MyGeneric>(arr: TypePlaceholder[]): TypePlaceholder   // 이렇게 하면 모든 타입 다 받음.
+}
+const superPrint: SuperPrint = (arr) => {
+  return arr[0];
+}
+// 보통 간단하게 다음처럼 선언함 
+type SuperPrint = <T>(arr: T[]) => T
+type SuperPrintt = <T, M> (a: T[], b: M ) => T
+
+function superPrint<T>(a: T[]){
+  return a[0];
+}
+```
+- 다양한 활용 방법
+```typescript
+type Player<E> = {
+    name: string
+    extraInfo : E
+}
+type KJM = Player<{favFood: string}>
+const kjm : KJM = {
+    name : "kjm",
+    extraInfo: { favFood: "meet"}
+}
+// 타입 확장 : 타입 만들고 그 타입을 또 제너릭 안에 넣고 가능. 큰 타입 선언 후 재사용.
+```
