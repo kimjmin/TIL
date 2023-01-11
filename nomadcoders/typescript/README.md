@@ -368,3 +368,91 @@ const strVal:string = strStorage.get("key");
 const boolStorage = new LocalStorage<boolean>
 const boolVal:boolean = boolStorage.get("key");
 ```
+
+## 프로젝트 설치
+- NextJS 를 쓰면 거의 직접 사용할 일이 없음.
+- 프로젝트 설정 :
+```sh
+npm init -y
+npm install -D typescript
+touch tsconfig.json
+```
+- `package.json` 설정 : `npm run build` 명령으로 빌드 가능
+```json
+  "scripts": {
+    "build": "tsc"
+  },
+```
+- `tsconfig.json` 설정
+```json
+{
+  "include": [ "src" ], // src 디렉토리에 index.ts 파일 작업
+  "compilerOptions": {
+    "outDir": "build",  // index.js 디렉토리들이 저장될 목적 경로
+    "target": "ES5",    // 빌드 할 JS 버전
+    "lib": ["ES6", "DOM"],   // 사용할 라이브러리
+    "strict": true,    // Declaration 안 하면 오류남.
+    "allowJs": true   //.ts 외에도 .js 파일도 import / export 가능하도록
+  }
+}
+```
+- VSCode 에서 커맨드+클릭 하게 되면 설명으로 이동. lib.dom.`d.ts` : declaration 파일.
+  - 여기에 필요한 타입에 대한 설명이 모두 되어있음.
+  - 더 정확하게 오류를 안 내려면 declaration 파일 부터 만들어야 함. `*.d.ts`
+```typescript
+// src/myPackage.d.ts
+interface Config { url:string; }
+declare module "myPackage" {
+  function init(config:Config): boolean;
+  function exit(config:number): number;
+}
+```
+- 위워 같이 이렇게 해야 export 한 패키지 불러올 때 오류 안 남
+```ts
+// src/myPackage.js
+export function init(config) {
+  return true;
+}
+export function exit(code){
+  return code+1;
+}
+```
+- 실제 사용
+```ts
+// src/index.ts
+import { init, exit } from "myPackage"
+init({
+  url: "true"
+})
+exit(1);
+```
+#### JSDoc
+- Javascript 에서 Typescript 처럼 체크 (보호) 가능
+- JavaDocs 와 비슷하게 코멘트로부터 힌트 도출.
+```ts
+// @ts-check
+/**
+ * Initiallizes the Project
+ * @param { object } config 
+ * @param { boolean } config.debug
+ * @param { string } config.url
+ * @returns boolean
+ */
+export function init(config){
+  return true;
+}
+```
+#### 개발 환경 실행
+- `npm i ts-node` , `npm i nodemon` 설치 : 자동 리프레시
+```json
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node src/index"
+  },
+```
+- `import crypto from "crypto";` : ts 로 작성하지 않은 코드를 불러올 때 오류. 해결 방법.
+  - type declaration 파일 `.d.ts` 작성
+  - https://github.com/DefinitelyTyped/DefinitelyTyped 리포에 수많은 declaration 파일 존재함.
+  - dev 에 설치 : `npm i -D @types/node`
+나머지 소스들은 [ts-app/src/index.ts](../ts-app/src/index.ts) 에서 확인

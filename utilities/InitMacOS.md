@@ -7,15 +7,16 @@
 4. zsh(미설치시) : `brew install zsh`
 5. oh my zsh : `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 6. zsh 테마 적용 : https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#nicoulaj
+   - https://github.com/romkatv/powerlevel10k
    - `vim .zshrc`
-   - `ZSH_THEME="robbyrussell"` --> `ZSH_THEME="nicoulaj"`
+   - `ZSH_THEME="robbyrussell"` --> `ZSH_THEME="powerlevel10k/powerlevel10k"`
    - `source ~/.zshrc`
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 brew install autojump
 ```
-7. zsh 플러그인 설치 : 
+1. zsh 플러그인 설치 : 
 `vim .zshrc` 에서 아래 내용 수정.
 ```
 plugins=(
