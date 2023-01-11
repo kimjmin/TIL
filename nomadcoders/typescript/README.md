@@ -219,3 +219,152 @@ const kjm : KJM = {
 }
 // 타입 확장 : 타입 만들고 그 타입을 또 제너릭 안에 넣고 가능. 큰 타입 선언 후 재사용.
 ```
+## 4. 객체 지향 프로그래밍
+- Java, C# 등과 유사.
+- 클래스 선언, 활용.
+```typescript
+class Player {
+    constructor (
+        private firstName:string,
+        private lastname:string,
+        public nickname:string,
+    ) {}
+}
+const kjm = new Player("Jongmmin", "kim", "kimjmin")
+
+kjm.firstname = "kjm1"  // 오류. private 이라서
+```
+- 추상 클래스 abstract
+```typescript
+abstract class User {
+    constructor (
+        private firstName:string,
+        private lastname:string,
+        public nickname:string,
+        protected proNicName:string,  // 서브클래스 에서는 활용 가능.
+    ) {}
+    private getFullName () {
+      return `${this.firstname} ${this.lastname}`;
+    }
+    abstract getNicName():void  // abstract 만 정의. 실제 불러오는 클래스에서 구현해야 함.
+}
+
+class Player extends User { 
+  getNicName(){   // 다시 구현해줘야 함.
+    console.log(this.proNicName)
+  }
+}
+const kjm = new User("kim","jongmin","kjm");
+kjm.getFullName();  // 오류남. private
+```
+- `{ "string" : "string" }` 형식의 해시맵 행태 선언
+- 1개 이상의 다수 타입을 넣을 때 다음과 같이 선언 가능 : `[key:type]: type`
+```typescript
+type Words = {
+    [key:string]: string
+}
+class Dict {
+    private words:Words
+    constructor () {
+        this.words = {}
+    }
+    add(word:Word){
+        if(this.words[word.term] === undefined){
+            this.words[word.term] = word.def;
+        }
+    }
+    def(term:string){
+        return this.words[term];
+    }
+}
+class Word {
+    constructor (
+        public term :string,
+        public def  :string
+    ) { }
+}
+const kimchi = new Word("kimchi", "한국의 전통음식");
+const dicts = new Dict();
+dicts.add(kimchi);
+dicts.def("kimchi");
+```
+- `constructor( public readonly` 프로퍼티도 사용 가능. 선언시 값은 줄 수 있지만 수정 불가.
+- `static` 역시 사용 가능.
+```typescript
+// 툭정 값만 입력 가능한 타입 선언.
+type Team = "red" | "blue" | "yellow"
+type Player = {
+    name:string,
+    team:Team   // "red", "blue", "yellow" 중에서만 입력 가능.
+}
+```
+- `interface` : type 과 비슷하지만 약간 다름.
+```typescript
+interface Player {  // type Playe = { }  같음. object 값을 설명하기만 하는 역할.
+    name:string,
+    team:Team   // "red", "blue", "yellow" 중에서만 입력 가능.
+}
+
+interface User {
+    name:string
+}
+interface Player extends User { // type Player = User & { } <- 같은 문접
+}
+const kjm:Player = {
+    name: "kjm"
+}
+```
+- interface 는 같은 이름을 반복해서 만들면 한번에 나중에 한번에 합쳐서 쓸 수 있음.
+- 추상 클래스 보다 가벼움.
+- 상속을 다음과 같이 표현도 가능
+```typescript
+// 추상 type 상속
+type PlayerA = { name:string }
+type PlayerAA = PlayerA & { lastname:string }
+// 프로퍼티 중간 추가 불가능
+const playerA:PlayerAA = { name:"jm", lastname: "k" }
+
+// interface 상속
+interface PlayerB { name:string }
+interface PlayerBB extends PlayerB { lastname:string }
+interface PlayerBB { age: number }  // 다시 프로퍼티 중간 추가는 인터페이스만 가능
+const playerB:PlayerBB = { name:"jm", lastname: "k", age:40 }
+
+type PlayerA = { name:string }
+interface PlayerB { nicname:string }
+class User implements PlayerA, PlayerB{
+    constructor (
+        public name: string,
+        public nicname: string
+    ) {} 
+}
+const user:User = {
+    name: "jongmin", nicname:"kjm"
+}
+```
+- 제네릭 복습
+```typescript
+interface SSorage<T> {  // 제네릭 사용 : T (이름 마음대로 줄 수 있음)
+    [key:string]:T
+}
+class LocalStorage<T> {
+    private storage:SSorage<T> = {}
+    set(key:string, value:T){
+        this.storage[key] = value;
+    }
+    remove(key:string){
+        delete this.storage[key];
+    }
+    get(key:string){
+        return this.storage[key];
+    }
+    clear(){
+        this.storage = {};
+    }
+}
+
+const strStorage = new LocalStorage<string>  // 제네릭 T 를 string 으로 대체
+const strVal:string = strStorage.get("key");
+const boolStorage = new LocalStorage<boolean>
+const boolVal:boolean = boolStorage.get("key");
+```
