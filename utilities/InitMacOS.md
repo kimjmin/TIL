@@ -29,7 +29,7 @@ plugins=(
 1. 역따옴표 \` --> ₩ 으로 변경되지 않게 설정 : 
    - /Library 폴더로 이동
    - KeyBindins 폴더 생성
-   - DefaultkeyBinding.dic 파일 생성 -> 작성 : ```{ "₩" = ("instertText:", "`"); }```
+   - DefaultkeyBinding.dict 파일 생성 -> 작성 : ```{ "₩" = ("instertText:", "`"); }```
    - 재부팅
 
 #### github
