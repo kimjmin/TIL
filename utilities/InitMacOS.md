@@ -2,11 +2,12 @@
 
 #### 환경 설정
 1. iterm2 : https://iterm2.com
-2. HomeBrew : `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-3. NaverD2Coding Font : https://github.com/naver/d2codingfont
-4. zsh(미설치시) : `brew install zsh`
-5. oh my zsh : `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-6. zsh 테마 적용 : https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#nicoulaj
+2. MacOS M1, M2 프로세서는 이것부터 해줄것 `softwareupdate --install-rosetta`
+3. HomeBrew : `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+4. NaverD2Coding Font : https://github.com/naver/d2codingfont
+5. zsh(미설치시) : `brew install zsh`
+6. oh my zsh : `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+7. zsh 테마 적용 : https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#nicoulaj
    - https://github.com/romkatv/powerlevel10k
    - `vim .zshrc`
    - `ZSH_THEME="robbyrussell"` --> `ZSH_THEME="powerlevel10k/powerlevel10k"`
